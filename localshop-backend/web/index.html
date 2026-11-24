@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Inicio</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/cart.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <button class="location-btn" id="cityBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span id="cityLabel">Cartagena</span>
+      </button>
+      <div class="header-actions">
+        <a href="perfil.html"><button class="icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></button></a>
+        <button class="icon-btn cart-btn" id="cartBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1" fill="white"/><circle cx="20" cy="21" r="1" fill="white"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="greeting">
+      <h1 id="greetName">¡Hola!</h1>
+      <p>¿Qué necesitas hoy en tu ciudad?</p>
+    </div>
+    <div class="search-container">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999"><circle cx="11" cy="11" r="8" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke-width="2"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Buscar negocios, productos..." autocomplete="off">
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="promo-banner">
+      <button class="carousel-arrow prev" id="bannerPrev" aria-label="Anterior">‹</button>
+      <div class="promo-content" id="promoContent">
+        <div class="promo-text">
+          <span class="promo-label" id="promoLabel">Piloto Cartagena</span>
+          <h2 class="promo-title" id="promoTitle">Apoya lo local</h2>
+          <p class="promo-description" id="promoDesc">Descubre negocios cerca de ti y compra directo, sin intermediarios.</p>
+        </div>
+        <div class="promo-image" id="promoEmoji">🛍️</div>
+      </div>
+      <button class="carousel-arrow next" id="bannerNext" aria-label="Siguiente">›</button>
+      <div class="carousel-dots" id="bannerDots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header"><h3>Categorías</h3></div>
+    <div class="categories-scroll" id="categoriesGrid"></div>
+  </div>
+</section>
+
+<section class="restaurants-section" id="sponsoredSection" style="display:none;">
+  <div class="container">
+    <div class="section-header"><h3>Patrocinados</h3></div>
+    <div class="restaurants-grid" id="sponsoredGrid"></div>
+  </div>
+</section>
+
+<section class="restaurants-section" id="offersSection" style="display:none;">
+  <div class="container">
+    <div class="section-header"><h3>Ofertas de hoy</h3></div>
+    <div class="offers-grid" id="offersGrid"></div>
+  </div>
+</section>
+
+<section class="active-orders-section" id="activeOrdersSection" style="display:none;">
+  <div class="container">
+    <div class="section-header"><h3>Pedidos activos</h3><a href="perfil.html" class="view-all">Ver todo →</a></div>
+    <div class="orders-scroll" id="activeOrdersScroll"></div>
+  </div>
+</section>
+
+<section class="active-orders-section" id="favoritesSection" style="display:none;">
+  <div class="container">
+    <div class="section-header"><h3>❤️ Tus favoritos</h3></div>
+    <div class="biz-scroll-row" id="favoritesRow"></div>
+  </div>
+</section>
+
+<section class="restaurants-section" id="destacadosSection" style="display:none;">
+  <div class="container">
+    <div class="section-header"><h3>Destacados para ti</h3></div>
+    <div class="restaurants-grid" id="destacadosGrid"></div>
+  </div>
+</section>
+
+<!-- Explora por categoría: un solo bloque con pestañas -->
+<section class="explore-section" id="exploreSection">
+  <div class="container">
+    <div class="section-header"><h3>Explora tu ciudad</h3></div>
+    <div class="explore-tabs" id="exploreTabs"></div>
+    <div class="restaurants-grid" id="exploreGrid"></div>
+  </div>
+</section>
+
+<section class="testimonials-section" id="testimonialsSection" style="display:none;">
+  <div class="container">
+    <h3 class="testimonials-title">Esto dicen nuestros clientes</h3>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<section class="business-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>¿Tienes un negocio?</h2>
+      <h3>Únete a LocalShop</h3>
+      <p>Aumenta tus ventas y llega a más clientes en tu ciudad</p>
+      <div class="cta-features">
+        <div class="cta-feature"><div class="feature-icon" style="background:rgba(255,255,255,0.2);">📱</div><p>Gestiona tu negocio desde cualquier lugar</p></div>
+        <div class="cta-feature"><div class="feature-icon" style="background:rgba(255,255,255,0.2);">📊</div><p>Analíticas en tiempo real de tus ventas</p></div>
+        <div class="cta-feature"><div class="feature-icon" style="background:rgba(255,255,255,0.2);">📣</div><p>Publicidad local y promociones</p></div>
+        <div class="cta-feature"><div class="feature-icon" style="background:rgba(255,255,255,0.2);">🚀</div><p>Crece con LocalShop</p></div>
+      </div>
+      <div class="cta-buttons">
+        <a href="auth.html"><button class="cta-primary-btn">Regístrate aquí</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<!-- Carrito flotante estilo Rappi -->
+<button class="floating-cart hidden" id="floatingCart">
+  Ver carrito · <span id="floatingCartCount">0</span> productos · <span id="floatingCartTotal">$0</span>
+</button>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Categoría</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/categoria.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="category-header">
+  <div class="container header-content">
+    <a href="index.html" class="back-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <h1 class="header-title" id="headerTitle">Categoría</h1>
+  </div>
+</header>
+
+<section class="category-title-section">
+  <div class="container category-title-wrapper">
+    <div class="category-icon-wrapper"><span class="category-letter" id="catIcon">🍽️</span></div>
+    <div class="category-title-text">
+      <h2 class="category-main-title" id="catTitle">Restaurantes</h2>
+      <p class="category-subtitle" id="catSubtitle">Encuentra los mejores negocios de tu ciudad aquí</p>
+    </div>
+  </div>
+</section>
+
+<section class="filter-section">
+  <div class="container filter-content">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="ofertas">🔥 Ofertas especiales</button>
+      <button class="filter-tab" data-filter="rapida">⚡ Entrega rápida</button>
+      <button class="filter-tab" data-filter="valorado">⭐ Mejor valorado</button>
+    </div>
+    <button class="sort-btn" id="sortBtn">Ordenar por ▾</button>
+  </div>
+</section>
+
+<section class="restaurants-list-section">
+  <div class="container">
+    <div class="restaurants-list-grid" id="storesGrid"></div>
+  </div>
+</section>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/categoria.js"></script>
+</body>
+</html>

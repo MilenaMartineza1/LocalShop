@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Panel comercial</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/panel.css">
+<link rel="stylesheet" href="css/factura.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="panel-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <h1>LocalShop</h1>
+      <p>Panel comercio</p>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="inicio">Inicio</button>
+      <button class="nav-item" data-view="perfil">Perfil del negocio</button>
+      <button class="nav-item" data-view="productos">Productos/Servicios</button>
+      <button class="nav-item" data-view="pedidos">Pedidos<span class="nav-badge" id="navPedidosBadge" hidden></span></button>
+      <button class="nav-item" data-view="ventas">Ventas del día</button>
+      <button class="nav-item" data-view="insumos">Insumos<span class="nav-badge warn" id="navInsumosBadge" hidden></span></button>
+      <button class="nav-item" data-view="estadisticas">Estadísticas</button>
+      <button class="nav-item" data-view="promociones">Promociones</button>
+      <button class="nav-item" data-view="publicidad">Publicidad local</button>
+      <button class="nav-item" data-view="soporte">Soporte</button>
+    </nav>
+    <button class="nav-item logout" id="panelLogout">Cerrar sesión</button>
+  </aside>
+
+  <main class="panel-main">
+    <header class="panel-topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">&#9776;</button>
+      <button class="back-btn-panel" id="panelBack" aria-label="Volver al inicio" hidden>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div>
+        <h2 id="topbarBizName">Mi negocio</h2>
+        <p id="topbarSection">Panel de administración</p>
+      </div>
+    </header>
+
+    <!-- ===== INICIO ===== -->
+    <section class="view active" id="view-inicio">
+      <div class="cards-row">
+        <div class="stat-card"><span class="stat-label">Ventas de hoy</span><strong id="statSalesToday">$0</strong><span class="stat-delta" id="statSalesTotal"></span></div>
+        <div class="stat-card"><span class="stat-label">Pedidos por atender</span><strong id="statActiveOrders">0</strong><span class="stat-delta" id="statActiveNew"></span></div>
+        <div class="stat-card"><span class="stat-label">Pedidos entregados</span><strong id="statCompletedOrders">0</strong><span class="stat-delta">histórico</span></div>
+        <div class="stat-card"><span class="stat-label">Calificación</span><strong id="statRating">-</strong><span class="stat-delta" id="statReviews"></span></div>
+      </div>
+
+      <div class="panel-box">
+        <h3>Notificaciones recientes</h3>
+        <ul class="notif-list" id="notifList"></ul>
+      </div>
+
+      <div class="cards-row two">
+        <div class="panel-box">
+          <h3>Actividad reciente</h3>
+          <ul class="activity-list" id="activityList"></ul>
+        </div>
+        <div class="panel-box">
+          <h3>Acciones rápidas</h3>
+          <div class="quick-actions">
+            <button class="quick-action" data-view="pedidos"><span>Ver pedidos</span></button>
+            <button class="quick-action" data-view="productos"><span>Editar productos</span></button>
+            <button class="quick-action" data-view="promociones"><span>Crear promoción</span></button>
+            <button class="quick-action" data-view="estadisticas"><span>Ver estadísticas</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERFIL DEL NEGOCIO ===== -->
+    <section class="view" id="view-perfil">
+      <div class="panel-box">
+        <h3>Información del negocio</h3>
+        <div class="biz-profile-head">
+          <div class="biz-avatar" id="profileAvatar"></div>
+          <div><h4 id="profileBizName">Mi negocio</h4><p id="profileBizCategory">Categoría</p></div>
+        </div>
+        <div class="form-grid">
+          <div><label for="profileAddress">Dirección</label><input type="text" id="profileAddress" maxlength="150"></div>
+          <div><label for="profilePhone">Teléfono</label><input type="tel" id="profilePhone" maxlength="20"></div>
+          <div><label for="profileHours">Horario</label><input type="text" id="profileHours" maxlength="80"></div>
+          <div><label for="profileCategory">Categoría</label><input type="text" id="profileCategory" disabled></div>
+          <div><label for="profileDelivery">Tiempo de entrega (minutos)</label><input type="number" id="profileDelivery" min="5" max="240"></div>
+          <div><label for="profileShipping">Costo de envío (COP)</label><input type="number" id="profileShipping" min="0" step="500"></div>
+          <div><label for="profileMin">Pedido mínimo (COP)</label><input type="number" id="profileMin" min="0" step="500"></div>
+          <div class="full"><label for="profileDesc">Descripción para tus clientes</label><textarea id="profileDesc" rows="3" maxlength="250"></textarea></div>
+        </div>
+        <p class="form-error" id="profileError" hidden></p>
+        <button class="btn btn-primary" id="saveProfileBtn">Guardar cambios</button>
+        <a class="link-preview" id="previewLink" target="_blank" rel="noopener">Ver cómo lo ve un cliente</a>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTOS/SERVICIOS ===== -->
+    <section class="view" id="view-productos">
+      <div class="panel-box">
+        <div class="box-header"><h3>Mis productos</h3><button class="btn btn-accent" id="addProductBtn">Agregar producto</button></div>
+        <input type="search" class="panel-search" id="productSearch" placeholder="Buscar en mis productos" aria-label="Buscar productos">
+        <div class="product-table" id="productTable"></div>
+      </div>
+    </section>
+
+    <!-- ===== PEDIDOS ===== -->
+    <section class="view" id="view-pedidos">
+      <div class="panel-box">
+        <div class="box-header"><h3>Pedidos</h3><span class="live-note" id="liveNote">Se actualiza solo</span></div>
+        <div class="filter-chips" id="orderFilters">
+          <button class="chip active" data-filter="todos">Todos <b id="cntTodos">0</b></button>
+          <button class="chip" data-filter="pendiente">Preparando <b id="cntPendiente">0</b></button>
+          <button class="chip" data-filter="enviado">En camino <b id="cntEnviado">0</b></button>
+          <button class="chip" data-filter="entregado">Entregados <b id="cntEntregado">0</b></button>
+          <button class="chip" data-filter="cancelado">Cancelados <b id="cntCancelado">0</b></button>
+        </div>
+        <div id="panelOrdersList"></div>
+        <p id="noPanelOrders" class="empty-state" style="display:none;">No hay pedidos en esta lista.</p>
+      </div>
+    </section>
+
+    <!-- ===== VENTAS DEL DIA ===== -->
+    <section class="view" id="view-ventas">
+      <div class="panel-box">
+        <div class="box-header">
+          <h3>Ventas del día</h3>
+          <div class="report-tools">
+            <input type="date" id="salesDate" aria-label="Fecha del reporte">
+            <button class="btn btn-outline" id="salesPrint">Imprimir</button>
+            <button class="btn btn-primary" id="salesCsv">Descargar CSV</button>
+          </div>
+        </div>
+        <div class="cards-row" id="salesSummary"></div>
+        <div class="pay-split" id="salesPay"></div>
+        <div class="table-scroll">
+          <table class="data-table" id="salesTable">
+            <thead><tr><th>Pedido</th><th>Hora</th><th>Cliente</th><th>Productos</th><th>Pago</th><th>Estado</th><th class="num">Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="salesEmpty" hidden>No hubo pedidos en esta fecha.</p>
+      </div>
+    </section>
+
+    <!-- ===== INSUMOS ===== -->
+    <section class="view" id="view-insumos">
+      <div class="panel-box">
+        <div class="box-header"><h3>Inventario de insumos</h3><button class="btn btn-accent" id="addSupplyBtn">Agregar insumo</button></div>
+        <div class="filter-chips" id="supplyFilters">
+          <button class="chip active" data-sfilter="todos">Todos <b id="scTodos">0</b></button>
+          <button class="chip" data-sfilter="faltantes">Faltantes <b id="scFaltantes">0</b></button>
+          <button class="chip" data-sfilter="agotados">Agotados <b id="scAgotados">0</b></button>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="supplyTable">
+            <thead><tr><th>Insumo</th><th>Disponible</th><th>Mínimo</th><th>Estado</th><th class="num">Acciones</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="supplyEmpty" hidden></p>
+      </div>
+      <div class="cards-row two">
+        <div class="panel-box">
+          <div class="box-header"><h3>Lista de compras</h3><div class="report-tools"><button class="btn btn-outline" id="shopCopy">Copiar</button><button class="btn btn-outline" id="shopPrint">Imprimir</button></div></div>
+          <p class="hint-text">Insumos en el mínimo o por debajo. La cantidad sugerida repone hasta el doble del mínimo.</p>
+          <ul class="shop-list" id="shopList"></ul>
+        </div>
+        <div class="panel-box">
+          <h3>Últimos movimientos</h3>
+          <ul class="move-list" id="moveList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ESTADÍSTICAS ===== -->
+    <section class="view" id="view-estadisticas">
+      <div class="cards-row two">
+        <div class="panel-box">
+          <div class="box-header"><h3>Ventas de la semana</h3></div>
+          <div class="bars" id="salesBars"></div>
+        </div>
+        <div class="panel-box">
+          <h3>Productos más vendidos</h3>
+          <ul class="top-products" id="topProducts"></ul>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>Métricas de rendimiento</h3>
+        <div class="metrics-row">
+          <div class="metric"><strong id="metricTicket">$0</strong><span>Valor promedio por pedido</span></div>
+          <div class="metric"><strong id="metricRating">-</strong><span>Calificación promedio de clientes</span></div>
+          <div class="metric"><strong id="metricCompleted">0</strong><span>Pedidos entregados</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROMOCIONES ===== -->
+    <section class="view" id="view-promociones">
+      <div class="cards-row" id="promoSummary"></div>
+      <div class="panel-box">
+        <div class="box-header"><h3>Mis promociones</h3><button class="btn btn-accent" id="createPromoBtn">Crear promoción</button></div>
+        <p class="hint-text">Las promociones automáticas se aplican solas en el pedido del cliente. Un cupón solo se aplica si el cliente escribe el código. Nunca se suman: se aplica la que más descuento da.</p>
+        <div id="promosList"></div>
+      </div>
+    </section>
+
+    <!-- ===== PUBLICIDAD LOCAL ===== -->
+    <section class="view" id="view-publicidad">
+      <div class="panel-box highlight-box">
+        <h3>Publicidad local</h3>
+        <p>Tu negocio aparece ante los clientes de LocalShop mientras dure la campaña, y aquí ves cuántas veces se mostró y cuántas personas entraron. El pago es simulado en esta versión de demostración.</p>
+      </div>
+      <div class="cards-row three" id="adPackages"></div>
+      <div class="panel-box">
+        <h3>Mis campañas</h3>
+        <div class="table-scroll">
+          <table class="data-table" id="adTable">
+            <thead><tr><th>Anuncio</th><th>Vigencia</th><th>Estado</th><th class="num">Vistas</th><th class="num">Clics</th><th class="num">Costo</th><th class="num">Acciones</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="adEmpty" hidden>Aún no tienes campañas. Elige un paquete para empezar.</p>
+      </div>
+    </section>
+
+    <!-- ===== SOPORTE ===== -->
+    <section class="view" id="view-soporte">
+      <div class="panel-box">
+        <h3>Centro de ayuda</h3>
+        <div class="help-grid">
+          <div class="help-card"><strong>¿Cómo gestionar pedidos?</strong><span>Pedidos</span></div>
+          <div class="help-card"><strong>Configurar métodos de pago</strong><span>Finanzas</span></div>
+          <div class="help-card"><strong>Crear promociones efectivas</strong><span>Marketing</span></div>
+          <div class="help-card"><strong>Optimizar mi perfil</strong><span>Perfil</span></div>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>Soporte técnico</h3>
+        <p style="margin-bottom:16px;color:var(--text-muted);">¿Necesitas ayuda? Nuestro equipo está disponible para asistirte.</p>
+        <div class="cta-buttons" style="justify-content:flex-start;gap:12px;">
+          <button class="btn btn-primary" id="ticketBtn">Abrir ticket de soporte</button>
+          <button class="btn btn-outline" id="chatBtn">Chat en vivo</button>
+        </div>
+        <hr style="margin:20px 0;border:none;border-top:1px solid #eee;">
+        <p><strong>Horario de atención:</strong></p>
+        <p>Lunes a viernes: 8:00 AM - 8:00 PM</p>
+        <p>Sábados: 9:00 AM - 5:00 PM</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="panel-modal-backdrop" id="panelModal" hidden>
+  <form class="panel-modal" id="panelModalForm" novalidate>
+    <h3 id="panelModalTitle"></h3>
+    <div id="panelModalFields"></div>
+    <p class="form-error" id="panelModalError" hidden></p>
+    <div class="panel-modal-actions">
+      <button type="button" class="btn btn-outline" id="panelModalCancel">Cancelar</button>
+      <button type="submit" class="btn btn-primary" id="panelModalSave">Guardar</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/factura.js"></script>
+<script src="js/panel.js"></script>
+</body>
+</html>

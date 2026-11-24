@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Nueva contraseña</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/auth.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="auth-screen">
+  <div class="auth-card">
+    <h2 class="card-title center purple">Crea tu nueva contraseña</h2>
+    <p class="card-subtitle center">Elige una contraseña que no uses en otros sitios</p>
+
+    <form id="resetForm" novalidate>
+      <label class="field-label" for="newPassword">Nueva contraseña</label>
+      <div class="pass-wrap">
+        <input type="password" class="input-field" id="newPassword" autocomplete="new-password" placeholder="Mínimo 8 caracteres" required minlength="8">
+        <button type="button" class="pass-toggle" data-toggle-pass="newPassword" aria-label="Mostrar contraseña">Mostrar</button>
+      </div>
+      <ul class="pass-rules" id="passRules" aria-live="polite">
+        <li data-rule="len">Al menos 8 caracteres</li>
+        <li data-rule="letter">Una letra</li>
+        <li data-rule="digit">Un número</li>
+      </ul>
+
+      <label class="field-label" for="newPasswordConfirm">Confirmar contraseña</label>
+      <input type="password" class="input-field" id="newPasswordConfirm" autocomplete="new-password" placeholder="Repite tu contraseña" required minlength="8">
+
+      <p id="resetError" class="field-error hidden" role="alert"></p>
+      <p id="resetOk" class="notice hidden" role="status"></p>
+      <button type="submit" class="btn btn-primary btn-block" id="resetSubmit">Guardar contraseña</button>
+    </form>
+
+    <p class="switch-link"><a href="auth.html">Ir a iniciar sesión</a></p>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/reset.js"></script>
+</body>
+</html>

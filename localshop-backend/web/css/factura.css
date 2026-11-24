@@ -1,0 +1,36 @@
+.invoice-overlay {
+  position: fixed; inset: 0; background: rgba(20,10,40,0.55); z-index: 900;
+  display: flex; align-items: flex-start; justify-content: center; padding: 20px 12px; overflow-y: auto;
+}
+.invoice-window { width: 100%; max-width: 640px; }
+.invoice-toolbar { display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px; }
+.invoice { background: white; border-radius: 12px; padding: 28px; color: #1a1a1a; font-size: 14px; }
+.inv-head { display: flex; justify-content: space-between; gap: 16px; border-bottom: 2px solid #5b21b6; padding-bottom: 14px; margin-bottom: 16px; }
+.inv-head h2 { font-size: 20px; color: #5b21b6; margin-bottom: 4px; }
+.inv-head p { color: #666; font-size: 13px; }
+.inv-num { text-align: right; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.inv-num strong { font-size: 15px; }
+.inv-void { text-align: center; color: #b91c1c; font-weight: 800; letter-spacing: 0.08em; border: 2px solid #b91c1c; border-radius: 8px; padding: 6px; margin-bottom: 14px; }
+.inv-client { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-bottom: 18px; }
+.inv-client span { display: block; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+.inv-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+.inv-table th { text-align: left; font-size: 12px; color: #666; border-bottom: 1px solid #ddd; padding: 8px 4px; }
+.inv-table td { padding: 8px 4px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.inv-table small { display: block; color: #92400e; font-size: 12px; overflow-wrap: anywhere; }
+.inv-table .num, .inv-table th.num { text-align: right; white-space: nowrap; }
+.inv-totals { margin-left: auto; max-width: 260px; }
+.inv-totals div { display: flex; justify-content: space-between; padding: 4px 0; }
+.inv-totals .inv-total { border-top: 2px solid #1a1a1a; margin-top: 6px; padding-top: 8px; font-size: 17px; font-weight: 800; }
+.inv-note { margin-top: 14px; font-size: 13px; color: #555; overflow-wrap: anywhere; }
+.inv-legal { margin-top: 18px; font-size: 11px; color: #999; text-align: center; }
+
+@media (max-width: 520px) { .inv-client { grid-template-columns: 1fr; } .inv-head { flex-direction: column; } .inv-num { text-align: left; } }
+
+@media print {
+  body.invoice-open > *:not(.invoice-overlay) { display: none !important; }
+  body.invoice-open { background: white; }
+  .invoice-overlay { position: static; background: none; padding: 0; overflow: visible; display: block; }
+  .invoice-toolbar { display: none; }
+  .invoice-window { max-width: none; }
+  .invoice { border-radius: 0; padding: 0; }
+}

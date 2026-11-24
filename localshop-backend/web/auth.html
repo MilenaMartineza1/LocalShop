@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Acceder</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/auth.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= PANTALLA: SELECCIONAR CIUDAD ================= -->
+<div class="auth-screen" id="screenCity">
+  <div class="brand">
+    <div class="brand-icon">🛒</div>
+    <h1>LocalShop</h1>
+    <p>Tu ciudad, tus negocios favoritos</p>
+  </div>
+
+  <div class="auth-card">
+    <h2 class="card-title">¿Dónde estás?</h2>
+    <p class="card-subtitle">Selecciona tu ciudad para comenzar</p>
+
+    <select id="citySelect" class="input-field">
+      <option value="">Selecciona tu ciudad</option>
+      <option value="Cartagena">Cartagena</option>
+      <option value="Barranquilla">Barranquilla</option>
+      <option value="Bogotá">Bogotá</option>
+      <option value="Medellín">Medellín</option>
+    </select>
+
+    <button class="btn btn-accent btn-block" id="btnContinueCity">Continuar</button>
+  </div>
+
+  <div class="auth-links">
+    <button class="btn btn-accent" id="btnGoLogin">Iniciar sesión</button>
+    <button class="btn btn-outline" id="btnGoRegister">Registrarse</button>
+  </div>
+</div>
+
+<!-- ================= PANTALLA: LOGIN ================= -->
+<div class="auth-screen hidden" id="screenLogin">
+  <div class="auth-card">
+    <button class="back-arrow" data-back="screenCity">←</button>
+    <h2 class="card-title center purple">Iniciar sesión</h2>
+    <p class="card-subtitle center">Accede a tu cuenta de LocalShop</p>
+
+    <div class="role-toggle">
+      <button type="button" class="role-btn active" data-role="cliente">Cliente</button>
+      <button type="button" class="role-btn" data-role="negocio">Negocio</button>
+    </div>
+
+    <p class="notice hidden" id="loginNotice" role="status"></p>
+
+    <form id="loginForm" novalidate>
+      <label class="field-label" for="loginEmail">Correo electrónico</label>
+      <input type="email" class="input-field" id="loginEmail" name="username" autocomplete="username" placeholder="tucorreo@ejemplo.com" required>
+
+      <label class="field-label" for="loginPassword">Contraseña</label>
+      <div class="pass-wrap">
+        <input type="password" class="input-field" id="loginPassword" name="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+        <button type="button" class="pass-toggle" data-toggle-pass="loginPassword" aria-label="Mostrar contraseña">Mostrar</button>
+      </div>
+      <div class="forgot-row"><a href="#" data-goto="screenForgot" id="linkForgot">¿Olvidaste tu contraseña?</a></div>
+      <p id="loginError" class="field-error hidden" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Iniciar sesión como cliente</button>
+    </form>
+
+    <p class="switch-link">¿No tienes cuenta? <a href="#" data-goto="screenRegister">Regístrate</a></p>
+  </div>
+</div>
+
+<!-- ================= PANTALLA: RECUPERAR CONTRASEÑA ================= -->
+<div class="auth-screen hidden" id="screenForgot">
+  <div class="auth-card">
+    <button class="back-arrow" data-back="screenLogin" aria-label="Volver">←</button>
+    <h2 class="card-title center purple">Recuperar contraseña</h2>
+    <p class="card-subtitle center">Te enviaremos un enlace para crear una contraseña nueva</p>
+
+    <div class="role-toggle" data-scope="forgot">
+      <button type="button" class="role-btn active" data-role="cliente">Cliente</button>
+      <button type="button" class="role-btn" data-role="negocio">Negocio</button>
+    </div>
+
+    <form id="forgotForm" novalidate>
+      <label class="field-label" for="forgotEmail">Correo de tu cuenta</label>
+      <input type="email" class="input-field" id="forgotEmail" autocomplete="username" placeholder="tucorreo@ejemplo.com" required>
+      <p id="forgotMsg" class="notice hidden" role="status"></p>
+      <p id="forgotError" class="field-error hidden" role="alert"></p>
+      <button type="submit" class="btn btn-primary btn-block" id="forgotSubmit">Enviar enlace</button>
+    </form>
+    <p class="switch-link"><a href="#" data-goto="screenLogin">Volver a iniciar sesión</a></p>
+  </div>
+</div>
+
+<!-- ================= PANTALLA: REGISTRO ================= -->
+<div class="auth-screen hidden" id="screenRegister">
+  <div class="auth-card">
+    <button class="back-arrow" data-back="screenCity">←</button>
+    <h2 class="card-title center purple">Crear cuenta</h2>
+    <p class="card-subtitle center">Únete a LocalShop hoy</p>
+
+    <div class="role-toggle">
+      <button type="button" class="role-btn active" data-role="cliente">Cliente</button>
+      <button type="button" class="role-btn" data-role="negocio">Negocio</button>
+    </div>
+
+    <form id="registerForm" novalidate>
+      <div id="fieldsCliente">
+        <label class="field-label">Nombre completo</label>
+        <input type="text" class="input-field reg-name" placeholder="Jose David Santos">
+      </div>
+
+      <div id="fieldsNegocio" class="hidden">
+        <label class="field-label">Nombre del negocio</label>
+        <input type="text" class="input-field reg-name" placeholder="Mi restaurante">
+        <label class="field-label">Nombre del propietario</label>
+        <input type="text" class="input-field reg-owner" placeholder="Jose David Santos">
+        <label class="field-label">Categoría del negocio</label>
+        <select class="input-field reg-categoria" id="regCategoria"></select>
+        <label class="field-label">Dirección</label>
+        <input type="text" class="input-field reg-direccion" placeholder="Calle 45 #23-12, Cartagena">
+      </div>
+
+      <label class="field-label">Correo electrónico</label>
+      <input type="email" class="input-field reg-email" autocomplete="email" placeholder="tucorreo@ejemplo.com" required>
+
+      <label class="field-label">Teléfono</label>
+      <input type="tel" class="input-field reg-phone" placeholder="321 893 4567" required pattern="[0-9 ]{7,15}">
+
+      <label class="field-label">Contraseña</label>
+      <div class="pass-wrap">
+        <input type="password" class="input-field reg-password" id="regPassword" autocomplete="new-password" placeholder="Mínimo 8 caracteres" required minlength="8">
+        <button type="button" class="pass-toggle" data-toggle-pass="regPassword" aria-label="Mostrar contraseña">Mostrar</button>
+      </div>
+      <ul class="pass-rules" id="passRules" aria-live="polite">
+        <li data-rule="len">Al menos 8 caracteres</li>
+        <li data-rule="letter">Una letra</li>
+        <li data-rule="digit">Un número</li>
+      </ul>
+
+      <label class="field-label">Confirmar contraseña</label>
+      <input type="password" class="input-field reg-password-confirm" autocomplete="new-password" placeholder="Repite tu contraseña" required minlength="8">
+      <p id="registerError" class="field-error hidden" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary btn-block">Crear cuenta</button>
+    </form>
+
+    <p class="switch-link">¿Ya tienes cuenta? <a href="#" data-goto="screenLogin">Inicia sesión</a></p>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

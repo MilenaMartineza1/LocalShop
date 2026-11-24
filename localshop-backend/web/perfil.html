@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Perfil - LocalShop</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/perfil.css">
+<link rel="stylesheet" href="css/cart.css">
+<link rel="stylesheet" href="css/factura.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="profile-header">
+  <a href="index.html" class="back-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </a>
+  <h1>Mi perfil</h1>
+</header>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-info">
+      <div id="profileAvatar"></div>
+      <div class="profile-details">
+        <h2 id="userName">Usuario</h2>
+        <p class="email" id="userEmail"></p>
+        <p class="member-since" id="userSince"></p>
+      </div>
+      <button class="btn btn-outline" id="editBtn">Editar</button>
+    </div>
+    <div class="profile-stats">
+      <div class="stat"><span class="stat-number" id="statOrders">0</span><span class="stat-label">Pedidos</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number" id="statFavs">0</span><span class="stat-label">Favoritos</span></div>
+    </div>
+  </div>
+
+  <div class="section" id="activeOrdersSection" style="display:none;">
+    <h3 class="section-title">Pedidos activos</h3>
+    <div id="activeOrdersList"></div>
+  </div>
+
+  <div class="tabs-dropdown">
+    <button class="dropdown-btn active" data-tab="historial">Historial</button>
+    <button class="dropdown-btn" data-tab="favoritos">Favoritos</button>
+    <button class="dropdown-btn" data-tab="configuracion">Configuración</button>
+  </div>
+
+  <div class="section tab-content" id="historial">
+    <div class="section-header"><h3 class="section-title">Historial de pedidos</h3></div>
+    <div id="orderHistory"></div>
+    <p id="noOrders" class="empty-state" style="display:none;">Aún no tienes pedidos. <a href="index.html">Explora los negocios de tu ciudad</a>.</p>
+  </div>
+
+  <div class="section tab-content" id="favoritos" style="display:none;">
+    <div class="section-header"><h3 class="section-title">Mis negocios favoritos</h3></div>
+    <div id="favoritesList"></div>
+  </div>
+
+  <div class="section tab-content" id="configuracion" style="display:none;">
+    <div class="settings-menu">
+      <div class="settings-item" data-setting="info"><div class="settings-info"><h4>Información personal</h4><p>Actualiza tus datos</p></div><span>›</span></div>
+      <div class="settings-item" data-setting="direcciones"><div class="settings-info"><h4>Direcciones</h4><p>Guarda hasta 5 direcciones de entrega</p></div><span>›</span></div>
+      <div class="settings-item" data-setting="pagos"><div class="settings-info"><h4>Métodos de pago</h4><p>Tarjetas y medios de pago</p></div><span>›</span></div>
+      <div class="settings-item" data-setting="preferencias"><div class="settings-info"><h4>Preferencias</h4><p>Notificaciones y privacidad</p></div><span>›</span></div>
+      <div class="settings-item" data-setting="seguridad"><div class="settings-info"><h4>Seguridad</h4><p>Cambia tu contraseña</p></div><span>›</span></div>
+      <div class="settings-item logout" id="logoutBtn"><div class="settings-info"><h4 class="logout-text">Cerrar sesión</h4></div><span>›</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal genérico de configuración -->
+<div class="settings-modal-overlay" id="settingsOverlay">
+  <div class="settings-modal">
+    <div class="settings-modal-head">
+      <h3 id="settingsModalTitle">Configuración</h3>
+      <button class="settings-modal-close" id="settingsModalClose">✕</button>
+    </div>
+    <div class="settings-modal-body" id="settingsModalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/factura.js"></script>
+<script src="js/perfil.js"></script>
+</body>
+</html>

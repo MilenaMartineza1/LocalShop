@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalShop - Negocio</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/negocio.css">
+<link rel="stylesheet" href="css/cart.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="biz-header">
+  <a href="javascript:history.back()" class="back-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </a>
+  <h1 id="bizHeaderName">Negocio</h1>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <button class="fav-btn-inline" id="favToggleBtn">🤍</button>
+    <div class="cart-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1" fill="white"/><circle cx="20" cy="21" r="1" fill="white"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-badge">0</span>
+    </div>
+  </div>
+</header>
+
+<div class="biz-cover" id="bizCover">
+  <div class="biz-cover-text">
+    <h2 id="bizName">Nombre</h2>
+    <p id="bizCategory">Categoría</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="biz-stats">
+    <span>⭐ <strong id="bizRating"></strong> (<span id="bizReviewCount"></span>)</span>
+    <span>🕐 <span id="bizTime"></span></span>
+    <span>📍 <span id="bizDistance"></span></span>
+    <span>Envío: <span id="bizDelivery"></span></span>
+  </div>
+
+  <div class="biz-info-box">
+    <p id="bizDescription"></p>
+    <div class="biz-info-grid">
+      <div><span class="label">Dirección</span><p id="bizAddress"></p></div>
+      <div><span class="label">Teléfono</span><p id="bizPhone"></p></div>
+      <div><span class="label">Horario</span><p id="bizHours"></p></div>
+      <div><span class="label">Pedido mínimo</span><p id="bizMinOrder"></p></div>
+    </div>
+  </div>
+
+  <div class="biz-tabs">
+    <button class="biz-tab active" data-tab="menu">🍴 Menú</button>
+    <button class="biz-tab" data-tab="reviews">⭐ Reseñas</button>
+  </div>
+
+  <div id="tabMenu" class="tab-panel">
+    <h3>Menú</h3>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+
+  <div id="tabReviews" class="tab-panel hidden">
+    <div class="reviews-summary">
+      <div class="score" id="reviewScore">4.9</div>
+      <div><strong id="reviewTotal">0 reseñas</strong><p>Basado en la opinión de clientes</p></div>
+    </div>
+    <div id="reviewsList"></div>
+  </div>
+</div>
+
+<div class="cart-bar hidden" id="cartBar">
+  <div class="cart-bar-info">
+    <span id="cartBarCount">0 productos</span>
+    <strong id="cartBarTotal">$0</strong>
+  </div>
+  <button class="btn btn-accent" id="viewCartBtn">Ver carrito</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/negocio.js"></script>
+</body>
+</html>
